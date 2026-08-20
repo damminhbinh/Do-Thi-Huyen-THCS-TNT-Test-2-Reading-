@@ -1,35 +1,36 @@
 <!DOCTYPE html>
 <html lang="vi">
-  <head>
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A Change of Scenery - Academic Reading Practice</title>
+  <title>Academic Reading Practice - A Change of Scenery</title>
+  
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --bg-main: #f4efe6;
-      --card-bg: #ffffff;
-      --card-alt: #faf8f5;
+      --bg-color: #f4efe6;
+      --card-bg: #faf8f5;
+      --card-pure: #ffffff;
       --border-color: #e4dcd0;
-      --text-main: #2d261e;
-      --text-muted: #6b5e51;
-      --accent-color: #c2410c;
-      --accent-hover: #9a3412;
-      --vintage-gold: #b45309;
-      --correct-bg: #dcfce7;
-      --correct-border: #22c55e;
-      --correct-text: #15803d;
-      --wrong-bg: #fee2e2;
-      --wrong-border: #ef4444;
-      --wrong-text: #b91c1c;
-      --explanation-bg: #eff6ff;
-      --explanation-border: #3b82f6;
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
-      --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.12);
+      --text-main: #2b2621;
+      --text-muted: #6e645a;
+      --primary-accent: #8c2f1b;
+      --vocab-highlight: #c2410c;
+      --success-bg: #dcfce7;
+      --success-border: #16a34a;
+      --success-text: #15803d;
+      --danger-bg: #fee2e2;
+      --danger-border: #dc2626;
+      --danger-text: #b91c1c;
+      --info-bg: #eff6ff;
+      --info-border: #93c5fd;
+      --info-text: #1e40af;
+      --shadow: 0 4px 20px -2px rgba(43, 38, 33, 0.08);
+      --radius: 12px;
     }
 
     * {
@@ -39,764 +40,648 @@
     }
 
     body {
-      background-color: var(--bg-main);
+      background-color: var(--bg-color);
       color: var(--text-main);
       font-family: 'Plus Jakarta Sans', sans-serif;
       line-height: 1.6;
-      padding-bottom: 50px;
+      padding: 16px;
     }
 
-    /* Top Banner Header */
-    .top-header {
-      background-color: #2c221e;
-      color: #e6dfd5;
-      padding: 12px 20px;
-      font-size: 0.9rem;
-      border-bottom: 3px solid var(--vintage-gold);
+    /* Top Banner */
+    .top-teacher-banner {
+      max-width: 1360px;
+      margin: 0 auto 16px auto;
+      background: linear-gradient(135deg, #3d2b1f, #1c140e);
+      color: #f5eedc;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      font-weight: 500;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
-
-    .top-header .author-badge {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 500;
-      letter-spacing: 0.3px;
-    }
-
-    .top-header .badge-tag {
-      background-color: var(--vintage-gold);
-      color: #fff;
-      font-size: 0.75rem;
-      padding: 2px 8px;
-      border-radius: 4px;
+    .top-teacher-banner span.highlight {
+      color: #f59e0b;
       font-weight: 700;
-      text-transform: uppercase;
     }
 
     /* Main Container */
-    .container {
-      max-width: 1400px;
-      margin: 25px auto;
-      padding: 0 20px;
-    }
-
-    /* 2 Column Layout */
-    .reading-layout {
+    .app-container {
+      max-width: 1360px;
+      margin: 0 auto;
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
-      gap: 28px;
+      gap: 24px;
       align-items: start;
     }
 
-    @media (max-width: 1024px) {
-      .reading-layout {
+    @media (max-width: 992px) {
+      .app-container {
         grid-template-columns: 1fr;
+      }
+      .top-teacher-banner {
+        flex-direction: column;
+        text-align: center;
+        gap: 6px;
       }
     }
 
-    /* Reading Column (Left) */
-    .reading-card {
+    /* Cards */
+    .card {
       background: var(--card-bg);
       border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 36px 40px;
-      box-shadow: var(--shadow-sm);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      position: relative;
     }
 
-    .article-header {
+    /* Left Column - Reading Passage */
+    .passage-header {
       border-bottom: 2px solid var(--border-color);
-      padding-bottom: 20px;
-      margin-bottom: 25px;
-      text-align: center;
+      padding-bottom: 16px;
+      margin-bottom: 24px;
     }
-
-    .article-tag {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+    .passage-subtitle {
+      font-size: 0.82rem;
       text-transform: uppercase;
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--vintage-gold);
       letter-spacing: 1.5px;
-      margin-bottom: 6px;
-    }
-
-    .article-title {
-      font-family: 'Cinzel', serif;
-      font-size: 2.1rem;
+      color: var(--primary-accent);
       font-weight: 700;
-      color: #1e1b18;
+      margin-bottom: 4px;
+    }
+    .passage-title {
+      font-family: 'Cinzel', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1a1613;
       line-height: 1.25;
-      margin-bottom: 10px;
     }
 
-    .article-subtitle {
-      font-family: 'Lora', serif;
-      font-style: italic;
-      color: var(--text-muted);
-      font-size: 1.1rem;
-    }
-
-    .reading-content {
+    .passage-body {
       font-family: 'Lora', serif;
       font-size: 1.08rem;
       line-height: 1.85;
       color: #24201d;
     }
-
-    .paragraph-block {
-      margin-bottom: 22px;
+    .passage-body p {
+      margin-bottom: 1.25rem;
       text-align: justify;
-      position: relative;
     }
-
-    .para-letter {
-      font-family: 'Cinzel', serif;
+    .para-tag {
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 700;
-      color: var(--vintage-gold);
+      color: var(--primary-accent);
       margin-right: 6px;
-      font-size: 1.15rem;
-    }
-
-    /* Academic Vocabulary Mark */
-    .vocab-mark {
-      border-bottom: 1.5px dotted var(--accent-color);
-      color: var(--accent-color);
-      font-weight: 600;
-      cursor: pointer;
-      padding-bottom: 1px;
-      transition: background-color 0.2s, color 0.2s;
       display: inline-block;
     }
 
-    .vocab-mark:hover {
-      background-color: rgba(194, 65, 12, 0.08);
-      color: var(--accent-hover);
+    /* Interactive Vocabulary Underline */
+    .vocab-term {
+      border-bottom: 1.5px dotted var(--vocab-highlight);
+      cursor: pointer;
+      font-weight: 500;
+      color: #7c2d12;
+      transition: background 0.2s ease;
+      padding: 0 2px;
+      border-radius: 2px;
+    }
+    .vocab-term:hover {
+      background-color: #ffedd5;
     }
 
     /* Vocabulary Popup */
-    .vocab-popup {
+    #vocab-popup {
       position: absolute;
-      background: #ffffff;
-      border: 1px solid #d97706;
-      border-radius: 10px;
-      padding: 16px;
-      box-shadow: var(--shadow-lg);
-      width: 320px;
       z-index: 1000;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 0.9rem;
-      line-height: 1.5;
-      color: #1f2937;
+      background: var(--card-pure);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+      width: 320px;
+      padding: 18px;
       display: none;
-      animation: fadeIn 0.2s ease-out;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      animation: fadeIn 0.15s ease-out;
     }
-
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-5px); }
+      from { opacity: 0; transform: translateY(4px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
     .popup-header {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #f3f4f6;
-      padding-bottom: 8px;
-      margin-bottom: 10px;
+      align-items: flex-start;
+      margin-bottom: 8px;
     }
-
-    .popup-word-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--accent-color);
-    }
-
-    .popup-type-tag {
-      background-color: #ffedd5;
-      color: #c2410c;
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 2px 6px;
-      border-radius: 4px;
-      text-transform: uppercase;
-    }
-
-    .popup-close {
-      background: none;
-      border: none;
-      font-size: 1.2rem;
-      line-height: 1;
-      cursor: pointer;
-      color: #9ca3af;
-      padding: 0 4px;
-    }
-
-    .popup-close:hover {
-      color: #374151;
-    }
-
-    .popup-ipa {
-      color: #6b7280;
-      font-size: 0.85rem;
+    .popup-title-row {
       display: flex;
       align-items: center;
-      gap: 6px;
-      margin-bottom: 8px;
-      font-family: monospace;
+      gap: 8px;
+      flex-wrap: wrap;
     }
-
-    .btn-audio {
-      background: none;
-      border: none;
+    .popup-word {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary-accent);
+      font-family: 'Cinzel', serif;
+    }
+    .popup-pos {
+      background: #f1ebd9;
+      color: #5c4838;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+    .audio-btn {
+      background: #fdfaf5;
+      border: 1px solid #d4c8b8;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
-      font-size: 1rem;
-      transition: transform 0.1s;
+      font-size: 0.85rem;
+      transition: all 0.2s ease;
     }
-
-    .btn-audio:hover {
-      transform: scale(1.15);
+    .audio-btn:hover {
+      background: #ebdcc9;
     }
-
+    .popup-close {
+      background: transparent;
+      border: none;
+      font-size: 1.25rem;
+      cursor: pointer;
+      color: var(--text-muted);
+      line-height: 1;
+    }
+    .popup-ipa {
+      color: #78716c;
+      font-family: 'Lora', serif;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
     .popup-meaning {
+      font-size: 0.92rem;
       font-weight: 600;
-      color: #111827;
+      color: #15803d;
       margin-bottom: 8px;
     }
-
     .popup-synonyms {
       font-size: 0.82rem;
       color: #4b5563;
       margin-bottom: 8px;
-      background: #f9fafb;
-      padding: 4px 8px;
-      border-radius: 4px;
+      background: #f3f4f6;
+      padding: 6px 10px;
+      border-radius: 6px;
     }
-
     .popup-quote {
-      font-size: 0.82rem;
-      color: #6b7280;
+      font-size: 0.8rem;
       font-style: italic;
-      border-left: 2px solid var(--accent-color);
+      color: #57534e;
+      border-left: 3px solid var(--border-color);
       padding-left: 8px;
+      line-height: 1.4;
     }
 
-    /* Vocabulary Summary Table */
-    .vocab-table-wrapper {
-      margin-top: 40px;
+    /* Vocabulary Table */
+    .vocab-table-section {
+      margin-top: 36px;
       border-top: 2px solid var(--border-color);
-      padding-top: 25px;
+      padding-top: 24px;
     }
-
-    .vocab-table-title {
+    .section-heading {
       font-family: 'Cinzel', serif;
-      font-size: 1.3rem;
-      color: #2c221e;
+      font-size: 1.25rem;
+      font-weight: 700;
       margin-bottom: 16px;
+      color: var(--primary-accent);
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-
-    .table-container {
+    .table-wrapper {
       overflow-x: auto;
-      border-radius: 8px;
       border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: var(--card-pure);
     }
-
-    .vocab-table {
+    table.vocab-table {
       width: 100%;
       border-collapse: collapse;
-      background: #ffffff;
       font-size: 0.88rem;
       text-align: left;
     }
-
-    .vocab-table th {
-      background-color: #2c221e;
-      color: #f4efe6;
-      font-weight: 600;
-      padding: 10px 14px;
-      font-size: 0.82rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .vocab-table td {
-      padding: 10px 14px;
-      border-bottom: 1px solid #f1ece4;
-      color: #374151;
-    }
-
-    .vocab-table tr:nth-child(even) {
-      background-color: #faf8f5;
-    }
-
-    .vocab-table tr:hover {
-      background-color: #f4eee4;
-    }
-
-    .vocab-table .word-cell {
+    table.vocab-table th {
+      background: #efe8dc;
+      padding: 10px 12px;
       font-weight: 700;
-      color: var(--accent-color);
+      color: #493b2d;
+      border-bottom: 1px solid var(--border-color);
+    }
+    table.vocab-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #f0e9df;
+      vertical-align: middle;
+    }
+    table.vocab-table tr:last-child td {
+      border-bottom: none;
+    }
+    .table-word {
+      font-weight: 700;
+      color: var(--primary-accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    /* Questions Column (Right) */
-    .quiz-column {
-      position: relative;
-    }
-
-    /* Sticky Score Header */
+    /* Right Column - Quiz */
     .score-sticky-bar {
       position: sticky;
-      top: 15px;
+      top: 12px;
       z-index: 100;
-      background: #2c221e;
-      color: #fff;
+      background: #2b2219;
+      color: #faf5eb;
       padding: 14px 20px;
-      border-radius: 10px;
-      box-shadow: var(--shadow-md);
+      border-radius: var(--radius);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
-      border: 1px solid #4a3b34;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+      margin-bottom: 24px;
+      border: 1px solid #4a3c2c;
     }
-
     .score-title {
       font-family: 'Cinzel', serif;
-      font-size: 1.1rem;
-      font-weight: 700;
+      font-size: 0.95rem;
       letter-spacing: 1px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .score-display {
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: #fbbf24;
-      background: rgba(0, 0, 0, 0.3);
-      padding: 2px 14px;
-      border-radius: 6px;
-      border: 1px solid rgba(251, 191, 36, 0.4);
-    }
-
-    .quiz-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 24px 28px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .question-item {
-      margin-bottom: 28px;
-      padding-bottom: 22px;
-      border-bottom: 1px dashed var(--border-color);
-    }
-
-    .question-item:last-child {
-      border-bottom: none;
-      margin-bottom: 10px;
-    }
-
-    .question-title {
       font-weight: 700;
-      font-size: 0.98rem;
-      color: #1f2937;
-      margin-bottom: 14px;
-      line-height: 1.5;
+    }
+    .score-badge {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #facc15;
+      background: #423223;
+      padding: 3px 12px;
+      border-radius: 6px;
+      border: 1px solid #5a4531;
     }
 
-    .question-options {
+    .question-card {
+      background: var(--card-pure);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 18px;
+      margin-bottom: 20px;
+      transition: all 0.2s ease;
+    }
+    .q-num {
+      display: inline-block;
+      background: #efe7d9;
+      color: #5d4631;
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+    .q-text {
+      font-weight: 600;
+      font-size: 0.98rem;
+      margin-bottom: 12px;
+      color: #1f1b18;
+    }
+    .q-options {
       display: flex;
       flex-direction: column;
-      gap: 9px;
+      gap: 8px;
     }
-
     .option-label {
       display: flex;
       align-items: flex-start;
-      padding: 10px 14px;
-      border-radius: 8px;
-      border: 1px solid #e5e7eb;
-      background: #fafaf9;
+      gap: 10px;
+      padding: 10px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: background 0.15s, border-color 0.15s;
       font-size: 0.92rem;
+      background: #fdfcfb;
     }
-
     .option-label:hover {
-      background: #f4f0eb;
-      border-color: #d1d5db;
+      background: #f7f2ea;
+      border-color: #cbbead;
     }
-
     .option-label input[type="radio"] {
-      margin-right: 12px;
       margin-top: 3px;
-      accent-color: var(--accent-color);
+      accent-color: var(--primary-accent);
     }
 
-    /* Feedback & Highlight Styling */
+    /* Feedback states */
     .option-label.is-correct {
-      background-color: var(--correct-bg) !important;
-      border-color: var(--correct-border) !important;
-      color: var(--correct-text) !important;
+      background-color: var(--success-bg) !important;
+      border-color: var(--success-border) !important;
+      color: var(--success-text) !important;
       font-weight: 600;
     }
-
-    .option-label.is-wrong {
-      background-color: var(--wrong-bg) !important;
-      border-color: var(--wrong-border) !important;
-      color: var(--wrong-text) !important;
-      text-decoration: line-through;
+    .option-label.is-incorrect {
+      background-color: var(--danger-bg) !important;
+      border-color: var(--danger-border) !important;
+      color: var(--danger-text) !important;
     }
 
+    /* Explanation Box */
     .explanation-box {
-      margin-top: 14px;
-      padding: 14px 16px;
-      background-color: var(--explanation-bg);
-      border-left: 4px solid var(--explanation-border);
-      border-radius: 6px;
-      font-size: 0.88rem;
       display: none;
-      animation: fadeIn 0.3s;
-    }
-
-    .exp-evidence {
-      color: #1e40af;
-      margin-bottom: 8px;
-      font-size: 0.85rem;
-    }
-
-    .exp-text {
-      color: #1e3a8a;
+      margin-top: 14px;
+      background: var(--info-bg);
+      border: 1px solid var(--info-border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 0.88rem;
       line-height: 1.5;
     }
-
-    /* Actions Bar */
-    .actions-bar {
-      display: flex;
-      gap: 14px;
-      margin-top: 25px;
+    .explanation-box .cite {
+      color: var(--info-text);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .explanation-box .cite span {
+      font-style: italic;
+      font-weight: 400;
+    }
+    .explanation-box .analysis {
+      color: #1e3a8a;
+      border-top: 1px dashed #bfdbfe;
+      padding-top: 6px;
+      white-space: pre-line;
     }
 
+    /* Action Buttons */
+    .action-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
     .btn {
       flex: 1;
-      padding: 13px 20px;
-      font-size: 1rem;
+      padding: 12px 20px;
+      font-size: 0.95rem;
       font-weight: 700;
-      border: none;
       border-radius: 8px;
+      border: none;
       cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       transition: all 0.2s ease;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
     }
-
     .btn-submit {
-      background-color: var(--accent-color);
+      background: var(--primary-accent);
       color: #fff;
-      box-shadow: 0 4px 12px rgba(194, 65, 12, 0.3);
     }
-
     .btn-submit:hover {
-      background-color: var(--accent-hover);
+      background: #732414;
+      box-shadow: 0 4px 12px rgba(140, 47, 27, 0.3);
     }
-
     .btn-reset {
-      background-color: #6b7280;
-      color: #fff;
+      background: #e2d9cb;
+      color: #40352a;
     }
-
     .btn-reset:hover {
-      background-color: #4b5563;
-    }
-
-    /* Mobile Responsive tweaks */
-    @media (max-width: 640px) {
-      .reading-card {
-        padding: 22px 18px;
-      }
-      .quiz-card {
-        padding: 20px 16px;
-      }
-      .article-title {
-        font-size: 1.6rem;
-      }
-      .reading-content {
-        font-size: 1rem;
-      }
-      .score-sticky-bar {
-        padding: 10px 14px;
-      }
-      .score-title {
-        font-size: 0.9rem;
-      }
-      .score-display {
-        font-size: 1.1rem;
-      }
-      .vocab-popup {
-        width: 280px;
-      }
+      background: #d4c7b4;
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Informational Banner -->
-  <header class="top-header">
-    <div class="author-badge">
-      <span class="badge-tag">Academic Reading</span>
-      <span>Đỗ Thị Huyền THCS Thân Nhân Trung 0982036952 - Academic Reading</span>
-    </div>
-    <div style="font-size: 0.8rem; opacity: 0.85;">Đề: A CHANGE OF SCENERY</div>
-  </header>
-
-  <!-- Main Container -->
-  <div class="container">
-    <main class="reading-layout">
-
-      <!-- LEFT COLUMN: Reading Article & Vocabulary -->
-      <section class="reading-column">
-        <article class="reading-card">
-          <div class="article-header">
-            <div class="article-tag">Reading Comprehension • C1/B2 Practice</div>
-            <h1 class="article-title">A CHANGE OF SCENERY</h1>
-            <p class="article-subtitle">Sally Thwaite left behind her routine life and headed for the Italian hills.</p>
-          </div>
-
-          <div class="reading-content" id="passageContent">
-            <!-- Paragraph A -->
-            <p class="paragraph-block">
-              <span class="para-letter">[A]</span>
-              If you walk into any bookstore there is an entire shelf dedicated to books about people who decide to change their lives by <span class="vocab-mark" data-word="relocate" data-type="verb" data-ipa="/ˌriːləʊˈkeɪt/" data-meaning="chuyển chỗ ở, di dời" data-synonym="move, migrate" data-quote="decide to change their lives by relocating to another country">relocating</span> to another country. This usually involves selling their house and car in the UK, buying a <span class="vocab-mark" data-word="run-down" data-type="adj" data-ipa="/ˌrʌn ˈdaʊn/" data-meaning="xuống cấp, xập xệ, tồi tàn" data-synonym="dilapidated, neglected, in disrepair" data-quote="buying a run-down old house abroad and renovating it">run-down</span> old house abroad and <span class="vocab-mark" data-word="renovate" data-type="verb" data-ipa="/ˈrenəveɪt/" data-meaning="cải tạo, trùng tu" data-synonym="restore, refurbish" data-quote="buying a run-down old house abroad and renovating it">renovating</span> it, experiencing amusing cultural misunderstandings and meeting charming locals along the way. I used to <span class="vocab-mark" data-word="sneer" data-type="verb" data-ipa="/snɪər/" data-meaning="chế nhạo, giễu cợt, khinh bỉ" data-synonym="mock, scoff, jeer" data-quote="I used to sneer at those kinds of books">sneer</span> at those kinds of books and wonder why anyone would put themselves through the discomfort of going to live in a foreign country - all in <span class="vocab-mark" data-word="pursuit" data-type="noun" data-ipa="/pəˈsjuːt/" data-meaning="sự theo đuổi, tìm kiếm" data-synonym="quest, chase" data-quote="all in pursuit of a simple life!">pursuit</span> of a simple life!
-            </p>
-
-            <!-- Paragraph B -->
-            <p class="paragraph-block">
-              <span class="para-letter">[B]</span>
-              One day, instead of walking straight past this section, I found myself stopping to <span class="vocab-mark" data-word="browse" data-type="verb" data-ipa="/braʊz/" data-meaning="xem lướt, đọc qua loa" data-synonym="skim, look through" data-quote="I found myself stopping to browse">browse</span>, and ended up selecting a book to read on the train. The cover showed a cluster of villages <span class="vocab-mark" data-word="cling" data-type="verb" data-ipa="/klɪŋ/" data-meaning="bám chặt vào, nép sát vào" data-synonym="stick, adhere, hold on" data-quote="a cluster of villages clinging to a steep cliff">clinging</span> to a steep cliff, surrounded by blue-green water. It was about an accountant who realised one day how boring her life was, so she bought a ticket to Italy. After reading the book, I started watching a reality TV show called <em>A New Home in Tuscany</em>, about a couple who leave London and move to the Italian hills. I became so <span class="vocab-mark" data-word="hooked" data-type="adj" data-ipa="/hʊkt/" data-meaning="say mê, bị cuốn hút hoàn toàn" data-synonym="obsessed, captivated, addicted" data-quote="I became so hooked that if friends called on Tuesday nights...">hooked</span> that if friends called on Tuesday nights I would make some excuse not to go out. Soon the idea of moving abroad had lodged itself in my mind and was turning into a <span class="vocab-mark" data-word="magnificent" data-type="adj" data-ipa="/mæɡˈnɪfɪsnt/" data-meaning="tuyệt vời, tráng lệ" data-synonym="splendid, grand, glorious" data-quote="turning into a magnificent possibility">magnificent</span> possibility.
-            </p>
-
-            <!-- Paragraph C -->
-            <p class="paragraph-block">
-              <span class="para-letter">[C]</span>
-              I <span class="vocab-mark" data-word="resign" data-type="verb" data-ipa="/rɪˈzaɪn/" data-meaning="từ chức, xin thôi việc" data-synonym="quit, step down" data-quote="I resigned from the hospital where I worked">resigned</span> from the hospital where I worked, sold my apartment and moved to the region of Umbria in Italy. Once there, I rented an apartment and hired a little motorbike. I loved sampling the local cuisine and I even signed up for a short cooking course. A very charming local called Francesco ran the course. When he told me that I cooked like a local myself, I didn't care whether this was a little <span class="vocab-mark" data-word="white lie" data-type="noun" data-ipa="/ˌwaɪt ˈlaɪ/" data-meaning="lời nói dối vô hại, lịch sự" data-synonym="fib, harmless untruth" data-quote="whether this was a little white lie or genuine praise">white lie</span> or <span class="vocab-mark" data-word="genuine" data-type="adj" data-ipa="/ˈdʒenjuɪn/" data-meaning="chân thật, thành thật" data-synonym="authentic, sincere, real" data-quote="whether this was a little white lie or genuine praise">genuine</span> praise. By the end of each lesson, not only had we learnt how to prepare an <span class="vocab-mark" data-word="authentic" data-type="adj" data-ipa="/ɔːˈθentɪk/" data-meaning="đích thực, chuẩn vị bản địa" data-synonym="original, bona fide" data-quote="prepare an authentic Umbrian dish">authentic</span> Umbrian dish, we were also rolling around the floor in fits of laughter, since Francesco was a natural storyteller and we enjoyed his talent for <span class="vocab-mark" data-word="imitate" data-type="verb" data-ipa="/ˈɪmɪteɪt/" data-meaning="bắt chước, nhại giọng" data-synonym="mimic, copy" data-quote="enjoyed his talent for imitating people">imitating</span> people.
-            </p>
-
-            <!-- Paragraph D -->
-            <p class="paragraph-block">
-              <span class="para-letter">[D]</span>
-              I also took a three-month Italian language course. It is fair to say that my attempts at cooking were more successful than my attempts, at this later stage in my life, to <span class="vocab-mark" data-word="acquire" data-type="verb" data-ipa="/əˈkwaɪər/" data-meaning="tiếp thu, học được (kỹ năng/ngôn ngữ)" data-synonym="master, learn, gain" data-quote="to acquire a new language">acquire</span> a new language. I <span class="vocab-mark" data-word="persevere" data-type="verb" data-ipa="/ˌpɜːsəˈvɪər/" data-meaning="kiên trì, bền chí theo đuổi" data-synonym="persist, endure, carry on" data-quote="I persevered, however, and after a few weeks...">persevered</span>, however, and after a few weeks of lessons I actually had a short conversation with a local - OK, I only asked for directions to the train station. In my mind, though, this was a <span class="vocab-mark" data-word="triumph" data-type="noun" data-ipa="/ˈtraɪʌmf/" data-meaning="chiến thắng vang dội, thành tựu lớn" data-synonym="victory, conquest, success" data-quote="this was a triumph of communication">triumph</span> of communication and I was satisfied with my <span class="vocab-mark" data-word="modest" data-type="adj" data-ipa="/ˈmɒdɪst/" data-meaning="khiêm tốn, vừa phải" data-synonym="humble, moderate, small" data-quote="satisfied with my modest progress">modest</span> progress.
-            </p>
-
-            <!-- Paragraph E -->
-            <p class="paragraph-block">
-              <span class="para-letter">[E]</span>
-              It was at one of these language classes that I heard a fellow student, John, mention that his neighbour, Sandro, was moving to Rome and selling his farmhouse <span class="vocab-mark" data-word="for a song" data-type="idiom" data-ipa="/fɔːr ə sɒŋ/" data-meaning="với giá rất rẻ, rẻ như bèo" data-synonym="very cheaply, for a bargain" data-quote="selling his farmhouse for a song">for a song</span>. John said he wished he had the money to purchase it himself, as the property was sure to be <span class="vocab-mark" data-word="snap up" data-type="verb" data-ipa="/snæp ʌp/" data-meaning="mua nhanh kẻo lỡ, vồ lấy" data-synonym="buy quickly, grab" data-quote="sure to be snapped up soon">snapped up</span> soon. I couldn't believe that it cost less than half the amount that I had sold my tiny apartment for. Would I dare to copy the writers of all those books, and the couple on the TV reality show?
-            </p>
-
-            <!-- Paragraph F -->
-            <p class="paragraph-block">
-              <span class="para-letter">[F]</span>
-              I had to go and have a look, of course. The farmhouse was located on the top of a <span class="vocab-mark" data-word="lush" data-type="adj" data-ipa="/lʌʃ/" data-meaning="tươi tốt, mướt mát cây cỏ" data-synonym="luxuriant, verdant, flourishing" data-quote="located on the top of a lush hill">lush</span> hill, and although it was very <span class="vocab-mark" data-word="run-down" data-type="adj" data-ipa="/ˌrʌn ˈdaʊn/" data-meaning="xuống cấp, bỏ hoang phế" data-synonym="neglected, dilapidated" data-quote="although it was very run-down, it possessed charm">run-down</span>, it possessed charm. There were extensive <span class="vocab-mark" data-word="orchard" data-type="noun" data-ipa="/ˈɔːtʃəd/" data-meaning="vườn cây ăn quả" data-synonym="fruit garden, plantation" data-quote="There were extensive orchards with well-kept trees">orchards</span> with well-kept trees, so I would have nature's <span class="vocab-mark" data-word="bounty" data-type="noun" data-ipa="/ˈbaʊnti/" data-meaning="sản vật dồi dào, sự hào phóng của thiên nhiên" data-synonym="abundance, gift, generosity" data-quote="I would have nature's bounty literally on my doorstep">bounty</span> literally on my doorstep. I bought it straight away.
-            </p>
-
-            <!-- Paragraph G -->
-            <p class="paragraph-block">
-              <span class="para-letter">[G]</span>
-              The project wasn't without its difficulties, though. The farmhouse was constructed entirely of stone and wood in 1857, and was collapsing in several places. My first priority, therefore, was to hire some local <span class="vocab-mark" data-word="craftsman" data-type="noun" data-ipa="/ˈkrɑːftsmən/" data-meaning="thợ thủ công lành nghề" data-synonym="artisan, skilled worker" data-quote="hire some local craftsmen to add supports">craftsmen</span> to add supports to the building. I also strengthened the foundations, installed a new kitchen and renovated the rest of the property. In the end, all the cost and effort were <span class="vocab-mark" data-word="worthwhile" data-type="adj" data-ipa="/ˌwɜːθˈwaɪl/" data-meaning="xứng đáng công sức/tiền của" data-synonym="rewarding, valuable" data-quote="all the cost and effort were worthwhile">worthwhile</span>, because I felt I belonged here as much as I did anywhere in the world, and I was determined to make it my home. I must say I sometimes look at my collection of books on Italy and think I'd like to have a go at writing one myself! I'd like to share my experience and let other dreamers out there know that the difficulty is worth it. I didn't quite find the simple life, but I did find what the Italians call the sweet life - <em>la dolce vita</em>.
-            </p>
-          </div>
-
-          <!-- Vocabulary Table -->
-          <div class="vocab-table-wrapper">
-            <h3 class="vocab-table-title">📖 Academic Vocabulary & Collocations</h3>
-            <div class="table-container">
-              <table class="vocab-table">
-                <thead>
-                  <tr>
-                    <th>📖 Word / Phrase</th>
-                    <th>🔊 IPA</th>
-                    <th>🇻🇳 Meaning</th>
-                    <th>🔁 Synonym(s)</th>
-                  </tr>
-                </thead>
-                <tbody id="vocabTableBody">
-                  <!-- Generated via JavaScript -->
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </article>
-      </section>
-
-      <!-- RIGHT COLUMN: Interactive Quiz & Sticky Header -->
-      <section class="quiz-column">
-        <!-- Sticky Score Display -->
-        <div class="score-sticky-bar">
-          <div class="score-title">
-            <span>📊</span> READING SCORE:
-          </div>
-          <div class="score-display" id="scoreDisplay">0 / 10</div>
-        </div>
-
-        <div class="quiz-card">
-          <form id="quizForm">
-            <div id="questionsContainer"></div>
-            <div class="actions-bar">
-              <button type="button" class="btn btn-submit" onclick="gradeQuiz()">✅ Chấm điểm</button>
-              <button type="button" class="btn btn-reset" onclick="resetQuiz()">🔄 Làm lại</button>
-            </div>
-          </form>
-        </div>
-      </section>
-
-    </main>
+  <!-- Top Teacher Identity Banner -->
+  <div class="top-teacher-banner">
+    <div>📚 <strong>Academic Reading Practice</strong> | THCS Thân Nhân Trung</div>
+    <div>Giáo viên phụ trách: <span class="highlight">Đỗ Thị Huyền</span> &bull; 0982036952</div>
   </div>
 
-  <!-- Shared Vocabulary Popup Element -->
-  <div id="vocabPopup" class="vocab-popup">
-    <div class="popup-header">
-      <div>
-        <span class="popup-word-title" id="popWord">Word</span>
-        <span class="popup-type-tag" id="popType">noun</span>
+  <!-- App Layout -->
+  <div class="app-container">
+    
+    <!-- LEFT COLUMN: READING PASSAGE & VOCAB TABLE -->
+    <div class="card">
+      <div class="passage-header">
+        <div class="passage-subtitle">Lifestyle & Culture &bull; Reading Comprehension</div>
+        <h1 class="passage-title">A CHANGE OF SCENERY</h1>
+        <p style="font-style: italic; color: var(--text-muted); margin-top: 6px;">Sally Thwaite left behind her routine life and headed for the Italian hills.</p>
       </div>
-      <button class="popup-close" onclick="closePopup()">&times;</button>
+
+      <div class="passage-body" id="passageText">
+        <p>
+          <span class="para-tag">[A]</span>
+          If you walk into any bookstore there is an entire shelf dedicated to books about people who decide to change their lives by relocating to another country. This usually involves selling their house and car in the UK, buying a <span class="vocab-term" data-word="run-down">run-down</span> old house abroad and renovating it, experiencing amusing cultural misunderstandings and meeting charming locals along the way. I used to <span class="vocab-term" data-word="sneer">sneer</span> at those kinds of books and wonder why anyone would put themselves through the discomfort of going to live in a foreign country - all <span class="vocab-term" data-word="in pursuit of">in pursuit of</span> a simple life!
+        </p>
+
+        <p>
+          <span class="para-tag">[B]</span>
+          One day, instead of walking straight past this section, I found myself stopping to browse, and ended up selecting a book to read on the train. The cover showed a cluster of villages clinging to a steep cliff, surrounded by blue-green water. It was about an accountant who realised one day how boring her life was, so she bought a ticket to Italy. After reading the book, I started watching a reality TV show called <em>A New Home in Tuscany</em>, about a couple who leave London and move to the Italian hills. I became so <span class="vocab-term" data-word="hooked">hooked</span> that if friends called on Tuesday nights I would make some excuse not to go out. Soon the idea of moving abroad had <span class="vocab-term" data-word="lodged itself in my mind">lodged itself in my mind</span> and was turning into a magnificent possibility.
+        </p>
+
+        <p>
+          <span class="para-tag">[C]</span>
+          I resigned from the hospital where I worked, sold my apartment and moved to the region of Umbria in Italy. Once there, I rented an apartment and hired a little motorbike. I loved <span class="vocab-term" data-word="sampling">sampling</span> the local cuisine and I even signed up for a short cooking course. A very charming local called Francesco ran the course. When he told me that I cooked like a local myself, I didn't care whether this was a little white lie or genuine praise. By the end of each lesson, not only had we learnt how to prepare an <span class="vocab-term" data-word="authentic">authentic</span> Umbrian dish, we were also rolling around the floor in <span class="vocab-term" data-word="fits of laughter">fits of laughter</span>, since Francesco was a natural storyteller and we enjoyed his talent for imitating people.
+        </p>
+
+        <p>
+          <span class="para-tag">[D]</span>
+          I also took a three-month Italian language course. It is fair to say that my attempts at cooking were more successful than my attempts, at this later stage in my life, to acquire a new language. I <span class="vocab-term" data-word="persevered">persevered</span>, however, and after a few weeks of lessons I actually had a short conversation with a local - OK, I only asked for directions to the train station. In my mind, though, this was a triumph of communication and I was satisfied with my <span class="vocab-term" data-word="modest">modest</span> progress.
+        </p>
+
+        <p>
+          <span class="para-tag">[E]</span>
+          It was at one of these language classes that I heard a fellow student, John, mention that his neighbour, Sandro, was moving to Rome and selling his farmhouse <span class="vocab-term" data-word="for a song">for a song</span>. John said he wished he had the money to purchase it himself, as the property was sure to be <span class="vocab-term" data-word="snapped up">snapped up</span> soon. I couldn't believe that it cost less than half the amount that I had sold my tiny apartment for. Would I dare to copy the writers of all those books, and the couple on the TV reality show?
+        </p>
+
+        <p>
+          <span class="para-tag">[F]</span>
+          I had to go and have a look, of course. The farmhouse was located on the top of a lush hill, and although it was very run-down, it possessed charm. There were extensive orchards with well-kept trees, so I would have <span class="vocab-term" data-word="nature's bounty">nature's bounty</span> literally on my doorstep. I bought it straight away.
+        </p>
+
+        <p>
+          <span class="para-tag">[G]</span>
+          The project wasn't without its difficulties, though. The farmhouse was constructed entirely of stone and wood in 1857, and was collapsing in several places. My first priority, therefore, was to hire some local craftsmen to add supports to the building. I also strengthened the foundations, installed a new kitchen and renovated the rest of the property. In the end, all the cost and effort were <span class="vocab-term" data-word="worthwhile">worthwhile</span>, because I felt I belonged here as much as I did anywhere in the world, and I was determined to make it my home. I must say I sometimes look at my collection of books on Italy and think I'd like to have a go at writing one myself! I'd like to share my experience and let other dreamers out there know that the difficulty is worth it. I didn't quite find the simple life, but I did find what the Italians call the sweet life - <em>la dolce vita</em>.
+        </p>
+      </div>
+
+      <!-- Popup element -->
+      <div id="vocab-popup">
+        <div class="popup-header">
+          <div class="popup-title-row">
+            <span class="popup-word" id="pop-word">Word</span>
+            <span class="popup-pos" id="pop-pos">pos</span>
+            <button class="audio-btn" id="pop-audio" title="Phát âm">🔊</button>
+          </div>
+          <button class="popup-close" id="pop-close">&times;</button>
+        </div>
+        <div class="popup-ipa" id="pop-ipa">/ipa/</div>
+        <div class="popup-meaning" id="pop-meaning">Nghĩa tiếng Việt</div>
+        <div class="popup-synonyms" id="pop-syn"><strong>Từ đồng nghĩa:</strong> <span>synonym</span></div>
+        <div class="popup-quote" id="pop-quote">"Example quote from text..."</div>
+      </div>
+
+      <!-- Vocabulary Summary Table -->
+      <div class="vocab-table-section">
+        <div class="section-heading">📖 Bảng Tổng Hợp Từ Vựng & Thuật Ngữ</div>
+        <div class="table-wrapper">
+          <table class="vocab-table">
+            <thead>
+              <tr>
+                <th>📖 Word / Phrase</th>
+                <th>🔊 IPA</th>
+                <th>🇻🇳 Meaning</th>
+                <th>🔁 Synonym(s)</th>
+              </tr>
+            </thead>
+            <tbody id="vocab-table-body">
+              <!-- Rendered by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-    <div class="popup-ipa">
-      <span id="popIpa">/ipa/</span>
-      <button class="btn-audio" onclick="speakCurrentWord()" title="Nghe phát âm">🔊</button>
+
+    <!-- RIGHT COLUMN: QUIZ & SCORING -->
+    <div class="card">
+      <div class="score-sticky-bar">
+        <div class="score-title">READING SCORE</div>
+        <div class="score-badge" id="scoreDisplay">0 / 10</div>
+      </div>
+
+      <form id="quizForm">
+        <div id="questionsContainer">
+          <!-- Rendered by JS -->
+        </div>
+
+        <div class="action-row">
+          <button type="button" class="btn btn-submit" id="btnSubmit">✅ Chấm điểm</button>
+          <button type="button" class="btn btn-reset" id="btnReset">🔄 Làm lại</button>
+        </div>
+      </form>
     </div>
-    <div class="popup-meaning" id="popMeaning">Nghĩa tiếng Việt</div>
-    <div class="popup-synonyms" id="popSynonym">🔁 <strong>Synonyms:</strong> <span></span></div>
-    <div class="popup-quote" id="popQuote">"Trích dẫn bài đọc..."</div>
+
   </div>
 
-  <!-- JavaScript Logic -->
   <script>
-    // 1. Vocabulary Dataset
-    const vocabList = [
-      { word: "relocate", type: "verb", ipa: "/ˌriːləʊˈkeɪt/", meaning: "chuyển chỗ ở, di dời", synonym: "move, migrate" },
-      { word: "run-down", type: "adj", ipa: "/ˌrʌn ˈdaʊn/", meaning: "xuống cấp, xập xệ, bị bỏ bê", synonym: "dilapidated, neglected, in disrepair" },
-      { word: "renovate", type: "verb", ipa: "/ˈrenəveɪt/", meaning: "cải tạo, trùng tu, sửa chữa", synonym: "restore, refurbish, remodel" },
-      { word: "sneer", type: "verb", ipa: "/snɪər/", meaning: "chế nhạo, giễu cợt, tỏ ý khinh miệt", synonym: "mock, scoff, jeer" },
-      { word: "pursuit", type: "noun", ipa: "/pəˈsjuːt/", meaning: "sự theo đuổi, tìm kiếm (ước mơ/cuộc sống)", synonym: "quest, chase, search" },
-      { word: "browse", type: "verb", ipa: "/braʊz/", meaning: "xem lướt, đọc qua loa trong tiệm sách", synonym: "skim, leaf through, peruse" },
-      { word: "cling", type: "verb", ipa: "/klɪŋ/", meaning: "bám chặt vào, nép sát vào vách đá", synonym: "adhere, stick, hold fast" },
-      { word: "hooked", type: "adj", ipa: "/hʊkt/", meaning: "say mê, bị cuốn hút mạnh mẽ", synonym: "obsessed, captivated, engrossed" },
-      { word: "magnificent", type: "adj", ipa: "/mæɡˈnɪfɪsnt/", meaning: "tuyệt vời, nguy nga, tráng lệ", synonym: "splendid, grand, remarkable" },
-      { word: "resign", type: "verb", ipa: "/rɪˈzaɪn/", meaning: "từ chức, xin thôi việc", synonym: "quit, step down, vacate" },
-      { word: "white lie", type: "noun", ipa: "/ˌwaɪt ˈlaɪ/", meaning: "lời nói dối vô hại (để không làm phật lòng)", synonym: "fib, harmless untruth" },
-      { word: "genuine", type: "adj", ipa: "/ˈdʒenjuɪn/", meaning: "thật, chân thành, đích thực", synonym: "authentic, sincere, bona fide" },
-      { word: "authentic", type: "adj", ipa: "/ɔːˈθentɪk/", meaning: "chuẩn vị bản địa, đích thực", synonym: "traditional, original, real" },
-      { word: "imitate", type: "verb", ipa: "/ˈɪmɪteɪt/", meaning: "bắt chước, nhại lại điệu bộ", synonym: "mimic, emulate, copy" },
-      { word: "acquire", type: "verb", ipa: "/əˈkwaɪər/", meaning: "tiếp thu, học được (ngôn ngữ, kỹ năng)", synonym: "master, learn, gain" },
-      { word: "persevere", type: "verb", ipa: "/ˌpɜːsəˈvɪər/", meaning: "kiên trì, bền chí không nản lòng", synonym: "persist, endure, carry on" },
-      { word: "triumph", type: "noun", ipa: "/ˈtraɪʌmf/", meaning: "thành công lớn, thắng lợi vang dội", synonym: "victory, accomplishment, feat" },
-      { word: "modest", type: "adj", ipa: "/ˈmɒdɪst/", meaning: "khiêm tốn, vừa phải", synonym: "humble, moderate, unpretentious" },
-      { word: "for a song", type: "idiom", ipa: "/fɔːr ə sɒŋ/", meaning: "với giá rất rẻ, rẻ như bèo", synonym: "very cheaply, at a bargain price" },
-      { word: "snap up", type: "verb", ipa: "/snæp ʌp/", meaning: "vồ lấy, mua nhanh kẻo lỡ", synonym: "buy quickly, grab, snatch" },
-      { word: "lush", type: "adj", ipa: "/lʌʃ/", meaning: "tươi tốt, sum sê, mướt mát (cây cỏ)", synonym: "luxuriant, verdant, overgrown" },
-      { word: "orchard", type: "noun", ipa: "/ˈɔːtʃəd/", meaning: "vườn cây ăn quả", synonym: "fruit garden, plantation" },
-      { word: "bounty", type: "noun", ipa: "/ˈbaʊnti/", meaning: "sự hào phóng, sản vật dồi dào của thiên nhiên", synonym: "abundance, gift, generosity" },
-      { word: "craftsman", type: "noun", ipa: "/ˈkrɑːftsmən/", meaning: "người thợ thủ công lành nghề", synonym: "artisan, skilled worker" },
-      { word: "worthwhile", type: "adj", ipa: "/ˌwɜːθˈwaɪl/", meaning: "bõ công, xứng đáng công sức và tiền của", synonym: "rewarding, valuable, worthwhile" }
-    ];
-
-    // Populate Vocab Table
-    function renderVocabTable() {
-      const tbody = document.getElementById("vocabTableBody");
-      tbody.innerHTML = vocabList.map(item => `
-        <tr>
-          <td class="word-cell">
-            ${item.word} <span style="font-size:0.75rem; color:#6b7280; font-weight:normal;">(${item.type})</span>
-          </td>
-          <td style="font-family: monospace; color: #4b5563;">
-            ${item.ipa} 
-            <button class="btn-audio" onclick="speakText('${item.word}')" title="Phát âm" style="font-size:0.85rem;">🔊</button>
-          </td>
-          <td>${item.meaning}</td>
-          <td style="font-size: 0.83rem; color: #4b5563;">${item.synonym}</td>
-        </tr>
-      `).join('');
-    }
-
-    // 2. Interactive Popup Handler
-    const popup = document.getElementById("vocabPopup");
-    let currentSpeakingWord = "";
-
-    document.querySelectorAll(".vocab-mark").forEach(mark => {
-      mark.addEventListener("click", function(e) {
-        e.stopPropagation();
-        const word = this.getAttribute("data-word");
-        const type = this.getAttribute("data-type");
-        const ipa = this.getAttribute("data-ipa");
-        const meaning = this.getAttribute("data-meaning");
-        const synonym = this.getAttribute("data-synonym");
-        const quote = this.getAttribute("data-quote");
-
-        document.getElementById("popWord").innerText = word;
-        document.getElementById("popType").innerText = type;
-        document.getElementById("popIpa").innerText = ipa;
-        document.getElementById("popMeaning").innerText = meaning;
-        document.getElementById("popSynonym").querySelector("span").innerText = synonym;
-        document.getElementById("popQuote").innerText = `"${quote}"`;
-        currentSpeakingWord = word;
-
-        const rect = this.getBoundingClientRect();
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-
-        popup.style.display = "block";
-        
-        let topPos = rect.bottom + scrollTop + 8;
-        let leftPos = rect.left + scrollLeft;
-
-        if (leftPos + 320 > window.innerWidth) {
-          leftPos = window.innerWidth - 335;
-        }
-        if (leftPos < 10) leftPos = 10;
-
-        popup.style.top = `${topPos}px`;
-        popup.style.left = `${leftPos}px`;
-      });
-    });
-
-    function closePopup() {
-      popup.style.display = "none";
-    }
-
-    document.addEventListener("click", function(e) {
-      if (popup.style.display === "block" && !popup.contains(e.target) && !e.target.classList.contains("vocab-mark")) {
-        closePopup();
+    /* VOCABULARY DATA */
+    const vocabData = {
+      "sneer": {
+        pos: "verb",
+        ipa: "/snɪər/",
+        meaning: "Chế nhạo, cười khẩy, mỉa mai",
+        synonyms: "mock, scoff, jeer, deride",
+        quote: "I used to sneer at those kinds of books and wonder why anyone would put themselves through the discomfort..."
+      },
+      "in pursuit of": {
+        pos: "idiom",
+        ipa: "/ɪn pəˈsjuːt əv/",
+        meaning: "Để theo đuổi, tìm kiếm (cái gì)",
+        synonyms: "seeking, in search of, chasing",
+        quote: "...all in pursuit of a simple life!"
+      },
+      "hooked": {
+        pos: "adjective",
+        ipa: "/hʊkt/",
+        meaning: "Bị say mê, cuốn hút, nghiện",
+        synonyms: "addicted, fascinated, absorbed, captivated",
+        quote: "I became so hooked that if friends called on Tuesday nights I would make some excuse not to go out."
+      },
+      "lodged itself in my mind": {
+        pos: "phrase",
+        ipa: "/lɒdʒd ɪtˈsɛlf ɪn maɪ maɪnd/",
+        meaning: "Ghim chặt / in sâu vào tâm trí",
+        synonyms: "took root in my mind, stuck in my head",
+        quote: "Soon the idea of moving abroad had lodged itself in my mind and was turning into a magnificent possibility."
+      },
+      "sampling": {
+        pos: "verb (gerund)",
+        ipa: "/ˈsɑːm.plɪŋ/",
+        meaning: "Thưởng thức thử, nếm trải (ẩm thực)",
+        synonyms: "tasting, trying out, savoring",
+        quote: "I loved sampling the local cuisine and I even signed up for a short cooking course."
+      },
+      "authentic": {
+        pos: "adjective",
+        ipa: "/ɔːˈθen.tɪk/",
+        meaning: "Đích thực, chuẩn vị nguyên bản",
+        synonyms: "genuine, true, original, traditional",
+        quote: "...not only had we learnt how to prepare an authentic Umbrian dish..."
+      },
+      "fits of laughter": {
+        pos: "idiom",
+        ipa: "/fɪts əv ˈlɑːf.tər/",
+        meaning: "Cười nghiêng ngả, cười không ngớt",
+        synonyms: "gales of laughter, uncontrollable laughter",
+        quote: "...we were also rolling around the floor in fits of laughter, since Francesco was a natural storyteller..."
+      },
+      "persevered": {
+        pos: "verb",
+        ipa: "/ˌpɜː.sɪˈvɪəd/",
+        meaning: "Kiên trì, bền bỉ, nhẫn nại tiếp tục",
+        synonyms: "persisted, kept going, carried on",
+        quote: "I persevered, however, and after a few weeks of lessons I actually had a short conversation with a local..."
+      },
+      "modest": {
+        pos: "adjective",
+        ipa: "/ˈmɒd.ɪst/",
+        meaning: "Khiêm tốn, nhỏ bé vừa phải",
+        synonyms: "humble, moderate, limited",
+        quote: "...and I was satisfied with my modest progress."
+      },
+      "for a song": {
+        pos: "idiom",
+        ipa: "/fər ə sɒŋ/",
+        meaning: "Với giá rất rẻ, giá hời",
+        synonyms: "very cheaply, at a bargain price, for next to nothing",
+        quote: "...his neighbour, Sandro, was moving to Rome and selling his farmhouse for a song."
+      },
+      "snapped up": {
+        pos: "phrasal verb",
+        ipa: "/snæpt ʌp/",
+        meaning: "Được chớp lấy / mua ngay lập tức",
+        synonyms: "bought quickly, grabbed, snatched up",
+        quote: "...as the property was sure to be snapped up soon."
+      },
+      "run-down": {
+        pos: "adjective",
+        ipa: "/ˌrʌnˈdaʊn/",
+        meaning: "Xập xệ, xuống cấp, bị bỏ bê không tu sửa",
+        synonyms: "neglected, dilapidated, ramshackle, decayed",
+        quote: "...buying a run-down old house abroad and renovating it..."
+      },
+      "nature's bounty": {
+        pos: "noun phr.",
+        ipa: "/ˈneɪ.tʃəz ˈbaʊn.ti/",
+        meaning: "Sản vật dồi dào của mẹ thiên nhiên",
+        synonyms: "natural abundance, rich produce",
+        quote: "...so I would have nature's bounty literally on my doorstep."
+      },
+      "worthwhile": {
+        pos: "adjective",
+        ipa: "/ˌwɜːθˈwaɪl/",
+        meaning: "Đáng công sức / bõ công / có giá trị",
+        synonyms: "valuable, rewarding, worth the effort",
+        quote: "In the end, all the cost and effort were worthwhile, because I felt I belonged here..."
       }
-    });
+    };
 
-    function speakCurrentWord() {
-      if (currentSpeakingWord) speakText(currentSpeakingWord);
-    }
-
-    function speakText(text) {
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'en-GB';
-        utterance.rate = 0.9;
-        window.speechSynthesis.speak(utterance);
-      }
-    }
-
-    // 3. Quiz Data & Rendering
+    /* QUESTIONS DATA */
     const questionsData = [
       {
         id: 1,
-        question: "1. What did the writer originally think of books about going to live in a foreign country?",
+        question: "What did the writer originally think of books about going to live in a foreign country?",
         options: [
           { key: "A", text: "They took up too much space in bookstores." },
           { key: "B", text: "They contained many entertaining stories." },
@@ -804,12 +689,12 @@
           { key: "D", text: "They included a lot of useful information." }
         ],
         correct: "C",
-        evidence: 'Đoạn [A]: "I used to sneer at those kinds of books and wonder why anyone would put themselves through the discomfort of going to live in a foreign country - all in pursuit of a simple life!"',
-        explanation: "Tác giả ban đầu từng chế nhạo (sneer at) thể loại sách này và tự hỏi tại sao người ta lại phải chịu khổ để ra nước ngoài sống, điều này chứng tỏ cô hoàn toàn không có hứng thú hay coi trọng chúng."
+        citation: "I used to sneer at those kinds of books and wonder why anyone would put themselves through the discomfort of going to live in a foreign country - all in pursuit of a simple life!",
+        explanation: "Ban đầu người viết 'chế nhạo' (sneer) và không hiểu tại sao người ta lại làm vậy, thể hiện rằng cô hoàn toàn không có hứng thú hay coi trọng những cuốn sách đó (didn't interest her in any way). Đáp án đúng là C."
       },
       {
         id: 2,
-        question: "2. The word \"sneer\" in paragraph 1 is closest in meaning to ________.",
+        question: "The word \"sneer\" in paragraph 1 is closest in meaning to ________.",
         options: [
           { key: "A", text: "mock" },
           { key: "B", text: "laugh" },
@@ -817,12 +702,12 @@
           { key: "D", text: "joke" }
         ],
         correct: "A",
-        evidence: 'Đoạn [A]: "I used to sneer at those kinds of books..."',
-        explanation: 'Từ "sneer" mang nghĩa là cười nhạo, chế giễu với thái độ khinh bỉ, đồng nghĩa chuẩn nhất với "mock" (chế giễu, nhạo báng).'
+        citation: "I used to sneer at those kinds of books and wonder why anyone would put themselves through the discomfort...",
+        explanation: "Từ 'sneer' có nghĩa là cười nhạo, chế giễu, đồng nghĩa với 'mock'. Đáp án đúng là A."
       },
       {
         id: 3,
-        question: "3. The author didn't want to go out on Tuesday nights because _______.",
+        question: "The author didn't want to go out on Tuesday nights because _______.",
         options: [
           { key: "A", text: "she was busy making plans to move abroad" },
           { key: "B", text: "she was really interested in her book about Italy" },
@@ -830,25 +715,25 @@
           { key: "D", text: "she preferred not to see friends during the week" }
         ],
         correct: "C",
-        evidence: 'Đoạn [B]: "I started watching a reality TV show called A New Home in Tuscany... I became so hooked that if friends called on Tuesday nights I would make some excuse not to go out."',
-        explanation: "Tác giả mê mẩn chương trình truyền hình thực tế về cặp đôi chuyển đến vùng đồi nước Ý phát sóng vào tối thứ Ba nên đã tìm cớ từ chối đi chơi cùng bạn bè."
+        citation: "After reading the book, I started watching a reality TV show called A New Home in Tuscany... I became so hooked that if friends called on Tuesday nights I would make some excuse not to go out.",
+        explanation: "Tác giả quá mê chương trình truyền hình thực tế phát sóng vào tối thứ Ba (A New Home in Tuscany) nên tìm cớ từ chối bạn bè để ở nhà xem TV (wanted to watch a television programme). Đáp án đúng là C."
       },
       {
         id: 4,
-        question: "4. The impression that the writer gives of Francesco is that ________.",
+        question: "The impression that the writer gives of Francesco is that ________.",
         options: [
           { key: "A", text: "he could only cook local food" },
           { key: "B", text: "he wasn't honest with his students" },
-          { key: "C", text: "his cookery course was too short" },
+          { key: "C", his_text: "his cookery course was too short", text: "his cookery course was too short" },
           { key: "D", text: "his students found him amusing" }
         ],
         correct: "D",
-        evidence: 'Đoạn [C]: "we were also rolling around the floor in fits of laughter, since Francesco was a natural storyteller and we enjoyed his talent for imitating people."',
-        explanation: "Francesco là một người có tài kể chuyện bẩm sinh và nhại giọng người khác khiến học viên cười bò lăn trên sàn, chứng minh học viên cảm thấy anh rất hài hước/thú vị (amusing)."
+        citation: "...we were also rolling around the floor in fits of laughter, since Francesco was a natural storyteller and we enjoyed his talent for imitating people.",
+        explanation: "Francesco là một người kể chuyện bẩm sinh với khiếu bắt chước khiến học viên 'lăn lộn trên sàn cười' (rolling around the floor in fits of laughter), chứng tỏ học viên thấy anh ấy rất hài hước và thú vị (found him amusing). Đáp án đúng là D."
       },
       {
         id: 5,
-        question: "5. What did the writer realise about learning the Italian language?",
+        question: "What did the writer realise about learning the Italian language?",
         options: [
           { key: "A", text: "That she could learn Italian easily in spite of her age" },
           { key: "B", text: "That a three-month course of lessons would be enough" },
@@ -856,12 +741,12 @@
           { key: "D", text: "That it would help her to get on better with the locals" }
         ],
         correct: "C",
-        evidence: 'Đoạn [D]: "It is fair to say that my attempts at cooking were more successful than my attempts, at this later stage in my life, to acquire a new language."',
-        explanation: "Nỗ lực nấu ăn của tác giả thành công hơn nỗ lực học một ngôn ngữ mới ở độ tuổi này, nghĩa là việc học tiếng Ý khó khăn hơn việc học nấu các món ăn địa phương."
+        citation: "It is fair to say that my attempts at cooking were more successful than my attempts, at this later stage in my life, to acquire a new language.",
+        explanation: "Tác giả thừa nhận rằng việc học nấu ăn thành công hơn việc học ngoại ngữ mới ở độ tuổi này, đồng nghĩa việc học tiếng Ý khó hơn học nấu ăn (harder than learning to cook local dishes). Đáp án đúng là C."
       },
       {
         id: 6,
-        question: "6. The writer uses the phrase \"for a song\" in paragraph 5 to suggest the farmhouse was being sold ________.",
+        question: "The writer uses the phrase \"for a song\" in paragraph 5 to suggest the farmhouse was being sold ________.",
         options: [
           { key: "A", text: "as quickly as possible" },
           { key: "B", text: "for personal reasons" },
@@ -869,12 +754,12 @@
           { key: "D", text: "at a very low price" }
         ],
         correct: "D",
-        evidence: 'Đoạn [E]: "...selling his farmhouse for a song... I couldn\'t believe that it cost less than half the amount that I had sold my tiny apartment for."',
-        explanation: 'Thành ngữ "for a song" có nghĩa là bán với giá rất rẻ, rẻ như bèo (giá chưa bằng một nửa căn hộ nhỏ của cô ở Anh).'
+        citation: "...selling his farmhouse for a song... I couldn't believe that it cost less than half the amount that I had sold my tiny apartment for.",
+        explanation: "Thành ngữ 'for a song' mang nghĩa bán với giá rất rẻ / giá hời (at a very low price). Tác giả cũng giải thích thêm giá của nó chưa bằng một nửa căn hộ nhỏ của cô. Đáp án đúng là D."
       },
       {
         id: 7,
-        question: "7. When she first went to see the farmhouse, the writer ________.",
+        question: "When she first went to see the farmhouse, the writer ________.",
         options: [
           { key: "A", text: "believed it could be made into a charming home" },
           { key: "B", text: "mistakenly thought it would be easy to repair it" },
@@ -882,12 +767,12 @@
           { key: "D", text: "thought the orchards were too close to the farmhouse" }
         ],
         correct: "A",
-        evidence: 'Đoạn [F]: "The farmhouse was located on the top of a lush hill, and although it was very run-down, it possessed charm... I bought it straight away."',
-        explanation: "Mặc dù ngôi nhà rất tồi tàn nhưng nó có nét quyến rũ riêng (it possessed charm) và thiên nhiên trù phú, khiến tác giả tin tưởng vào tiềm năng biến nó thành một ngôi nhà tuyệt đẹp và quyết định mua ngay."
+        citation: "The farmhouse was located on the top of a lush hill, and although it was very run-down, it possessed charm... I bought it straight away.",
+        explanation: "Mặc dù căn nhà xập xệ, nó vẫn toát lên nét quyến rũ (possessed charm) và có vườn cây trù phú, khiến cô thấy tiềm năng biến nó thành một ngôi nhà tuyệt đẹp (believed it could be made into a charming home). Đáp án đúng là A."
       },
       {
         id: 8,
-        question: "8. What did the writer conclude about her decision to move to Italy?",
+        question: "What did the writer conclude about her decision to move to Italy?",
         options: [
           { key: "A", text: "She felt that the unexpected difficulties had spoilt her dreams." },
           { key: "B", text: "She was disappointed that she couldn't find the simple life she wanted." },
@@ -895,12 +780,12 @@
           { key: "D", text: "She felt that, despite the problems, her decision had been a good one." }
         ],
         correct: "D",
-        evidence: 'Đoạn [G]: "In the end, all the cost and effort were worthwhile, because I felt I belonged here... let other dreamers out there know that the difficulty is worth it."',
-        explanation: "Tác giả kết luận rằng mọi chi phí, khó khăn và nỗ lực bỏ ra đều hoàn toàn xứng đáng (worthwhile / worth it), khẳng định quyết định chuyển đi là hoàn toàn đúng đắn."
+        citation: "In the end, all the cost and effort were worthwhile, because I felt I belonged here... and let other dreamers out there know that the difficulty is worth it.",
+        explanation: "Người viết khẳng định mọi chi phí và khó khăn đều xứng đáng (worthwhile / the difficulty is worth it) và cô đã tìm thấy 'la dolce vita'. Điều này chứng tỏ quyết định của cô là hoàn toàn đúng đắn (a good one). Đáp án đúng là D."
       },
       {
         id: 9,
-        question: "9. The word \"run-down\" in paragraph 6 is closest in meaning to _________.",
+        question: "The word \"run-down\" in paragraph 6 is closest in meaning to _________.",
         options: [
           { key: "A", text: "old" },
           { key: "B", text: "steep" },
@@ -908,12 +793,12 @@
           { key: "D", text: "broken" }
         ],
         correct: "C",
-        evidence: 'Đoạn [F] & [G]: "...and although it was very run-down, it possessed charm. The farmhouse was constructed entirely of stone and wood in 1857, and was collapsing in several places."',
-        explanation: 'Từ "run-down" miêu tả ngôi nhà bị xuống cấp do bỏ bê không được chăm sóc (neglected / in bad condition).'
+        citation: "...and although it was very run-down, it possessed charm.",
+        explanation: "'Run-down' miêu tả một ngôi nhà/công trình bị xuống cấp, xập xệ do không được chăm sóc hay bảo dưỡng (neglected). Đáp án đúng là C."
       },
       {
         id: 10,
-        question: "10. How did the writer's attitude change, during the time she writes about, towards books about moving to Italy?",
+        question: "How did the writer's attitude change, during the time she writes about, towards books about moving to Italy?",
         options: [
           { key: "A", text: "She began to understand why their authors write them." },
           { key: "B", text: "She now realised they made it seem easier than it really was." },
@@ -921,91 +806,208 @@
           { key: "D", text: "She started to enjoy collecting them as a hobby." }
         ],
         correct: "A",
-        evidence: 'Đoạn [A] & [G]: Đầu bài cô từng chế nhạo ("I used to sneer at those kinds of books..."), nhưng ở cuối bài cô muốn tự mình viết một cuốn sách ("I think I\'d like to have a go at writing one myself! I\'d like to share my experience...").',
-        explanation: "Từ chỗ chế giễu những cuốn sách viết về việc ra nước ngoài sống, sau khi tự mình trải nghiệm, cô thấu hiểu động cơ của các tác giả và chính bản thân cô cũng muốn viết một cuốn để chia sẻ với người khác."
+        citation: "I used to sneer at those kinds of books... -> In the end: I must say I sometimes look at my collection of books on Italy and think I'd like to have a go at writing one myself! I'd like to share my experience and let other dreamers out there know that the difficulty is worth it.",
+        explanation: "Từ chỗ chế giễu và không hiểu nổi tác giả viết sách để làm gì, sau khi tự mình trải nghiệm, cô muốn tự tay viết một cuốn sách để chia sẻ với những người có cùng ước mơ. Điều này cho thấy cô đã thấu hiểu động cơ của các tác giả (began to understand why their authors write them). Đáp án đúng là A."
       }
     ];
 
-    function renderQuestions() {
-      const container = document.getElementById("questionsContainer");
-      container.innerHTML = questionsData.map(q => `
-        <div class="question-item" id="q-block-${q.id}">
-          <div class="question-title">${q.question}</div>
-          <div class="question-options">
-            ${q.options.map(opt => `
-              <label class="option-label" id="label-${q.id}-${opt.key}">
-                <input type="radio" name="q${q.id}" value="${opt.key}">
-                <span><strong>${opt.key}.</strong> ${opt.text}</span>
-              </label>
-            `).join('')}
-          </div>
-          <div class="explanation-box" id="exp-${q.id}">
-            <div class="exp-evidence">🎯 <strong>Dẫn chứng:</strong> ${q.evidence}</div>
-            <div class="exp-text">💡 <strong>Giải thích chi tiết:</strong> ${q.explanation}</div>
-          </div>
-        </div>
-      `).join('');
+    /* AUDIO PRONUNCIATION */
+    function speakText(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.9;
+        window.speechSynthesis.speak(utterance);
+      } else {
+        alert("Trình duyệt không hỗ trợ Web Speech API.");
+      }
     }
 
-    // 4. Grading Function
-    function gradeQuiz() {
-      let score = 0;
-      const total = questionsData.length;
-
-      questionsData.forEach(q => {
-        const selected = document.querySelector(`input[name="q${q.id}"]:checked`);
-        const expBox = document.getElementById(`exp-${q.id}`);
-        
-        q.options.forEach(opt => {
-          const lbl = document.getElementById(`label-${q.id}-${opt.key}`);
-          lbl.classList.remove('is-correct', 'is-wrong');
-        });
-
-        const correctLbl = document.getElementById(`label-${q.id}-${q.correct}`);
-        if (correctLbl) correctLbl.classList.add('is-correct');
-
-        if (selected) {
-          const userAns = selected.value;
-          if (userAns === q.correct) {
-            score++;
-          } else {
-            const wrongLbl = document.getElementById(`label-${q.id}-${userAns}`);
-            if (wrongLbl) wrongLbl.classList.add('is-wrong');
-          }
-        }
-
-        expBox.style.display = "block";
-      });
-
-      const scoreDisplay = document.getElementById("scoreDisplay");
-      scoreDisplay.innerText = `${score} / ${total}`;
-      scoreDisplay.style.color = score >= 8 ? "#4ade80" : score >= 5 ? "#fbbf24" : "#f87171";
-    }
-
-    // 5. Reset Function
-    function resetQuiz() {
-      document.getElementById("quizForm").reset();
-      
-      questionsData.forEach(q => {
-        q.options.forEach(opt => {
-          const lbl = document.getElementById(`label-${q.id}-${opt.key}`);
-          lbl.classList.remove('is-correct', 'is-wrong');
-        });
-        const expBox = document.getElementById(`exp-${q.id}`);
-        expBox.style.display = "none";
-      });
-
-      const scoreDisplay = document.getElementById("scoreDisplay");
-      scoreDisplay.innerText = `0 / ${questionsData.length}`;
-      scoreDisplay.style.color = "#fbbf24";
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // Initialize components on load
-    window.addEventListener('DOMContentLoaded', () => {
+    /* INITIALIZATION & RENDERING */
+    document.addEventListener('DOMContentLoaded', () => {
       renderVocabTable();
       renderQuestions();
+      setupVocabPopup();
+      setupQuizHandlers();
     });
+
+    /* Render Vocab Table */
+    function renderVocabTable() {
+      const tbody = document.getElementById('vocab-table-body');
+      tbody.innerHTML = '';
+      Object.keys(vocabData).forEach(word => {
+        const item = vocabData[word];
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>
+            <span class="table-word">
+              ${word}
+              <button class="audio-btn" onclick="speakText('${word.replace(/'/g, "\\'")}')" title="Nghe phát âm">🔊</button>
+            </span>
+          </td>
+          <td style="color:#78716c; font-family:'Lora', serif;">${item.ipa}</td>
+          <td style="font-weight:600; color:#166534;">${item.meaning}</td>
+          <td style="color:#4b5563; font-size:0.84rem;">${item.synonyms}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    /* Render Questions */
+    function renderQuestions() {
+      const container = document.getElementById('questionsContainer');
+      container.innerHTML = '';
+      questionsData.forEach(q => {
+        const qCard = document.createElement('div');
+        qCard.className = 'question-card';
+        qCard.id = `q-card-${q.id}`;
+
+        let optionsHtml = '';
+        q.options.forEach(opt => {
+          optionsHtml += `
+            <label class="option-label" id="opt-label-${q.id}-${opt.key}">
+              <input type="radio" name="question-${q.id}" value="${opt.key}">
+              <span><strong>${opt.key}.</strong> ${opt.text}</span>
+            </label>
+          `;
+        });
+
+        qCard.innerHTML = `
+          <span class="q-num">QUESTION ${q.id}</span>
+          <div class="q-text">${q.question}</div>
+          <div class="q-options">${optionsHtml}</div>
+          <div class="explanation-box" id="exp-${q.id}">
+            <div class="cite">🎯 Dẫn chứng: <span>"${q.citation}"</span></div>
+            <div class="analysis">💡 Giải thích chi tiết: ${q.explanation}</div>
+          </div>
+        `;
+        container.appendChild(qCard);
+      });
+    }
+
+    /* Vocabulary Popup Logic */
+    function setupVocabPopup() {
+      const popup = document.getElementById('vocab-popup');
+      const popWord = document.getElementById('pop-word');
+      const popPos = document.getElementById('pop-pos');
+      const popAudio = document.getElementById('pop-audio');
+      const popIpa = document.getElementById('pop-ipa');
+      const popMeaning = document.getElementById('pop-meaning');
+      const popSyn = document.getElementById('pop-syn');
+      const popQuote = document.getElementById('pop-quote');
+      const popClose = document.getElementById('pop-close');
+
+      let currentActiveWord = "";
+
+      document.querySelectorAll('.vocab-term').forEach(term => {
+        term.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const wordKey = term.getAttribute('data-word');
+          const data = vocabData[wordKey];
+          if (!data) return;
+
+          currentActiveWord = wordKey;
+          popWord.textContent = wordKey;
+          popPos.textContent = data.pos;
+          popIpa.textContent = data.ipa;
+          popMeaning.textContent = data.meaning;
+          popSyn.innerHTML = `<strong>Từ đồng nghĩa:</strong> ${data.synonyms}`;
+          popQuote.textContent = `"${data.quote}"`;
+
+          // Position calculation relative to scroll
+          const rect = term.getBoundingClientRect();
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+
+          popup.style.display = 'block';
+          
+          let top = rect.bottom + scrollTop + 6;
+          let left = rect.left + scrollLeft - 20;
+
+          // Adjust boundary for screen edges
+          if (left + 330 > window.innerWidth) {
+            left = window.innerWidth - 340;
+          }
+          if (left < 10) left = 10;
+
+          popup.style.top = `${top}px`;
+          popup.style.left = `${left}px`;
+        });
+      });
+
+      popAudio.addEventListener('click', () => {
+        if (currentActiveWord) speakText(currentActiveWord);
+      });
+
+      popClose.addEventListener('click', () => {
+        popup.style.display = 'none';
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!popup.contains(e.target)) {
+          popup.style.display = 'none';
+        }
+      });
+    }
+
+    /* Quiz Scoring Logic */
+    function setupQuizHandlers() {
+      const btnSubmit = document.getElementById('btnSubmit');
+      const btnReset = document.getElementById('btnReset');
+      const scoreDisplay = document.getElementById('scoreDisplay');
+
+      btnSubmit.addEventListener('click', () => {
+        let score = 0;
+
+        questionsData.forEach(q => {
+          const selected = document.querySelector(`input[name="question-${q.id}"]:checked`);
+          const expBox = document.getElementById(`exp-${q.id}`);
+          
+          // Clear previous states
+          q.options.forEach(opt => {
+            const label = document.getElementById(`opt-label-${q.id}-${opt.key}`);
+            label.classList.remove('is-correct', 'is-incorrect');
+          });
+
+          // Mark correct answer in green
+          const correctLabel = document.getElementById(`opt-label-${q.id}-${q.correct}`);
+          if (correctLabel) correctLabel.classList.add('is-correct');
+
+          if (selected) {
+            const userAns = selected.value;
+            if (userAns === q.correct) {
+              score++;
+            } else {
+              const wrongLabel = document.getElementById(`opt-label-${q.id}-${userAns}`);
+              if (wrongLabel) wrongLabel.classList.add('is-incorrect');
+            }
+          }
+
+          // Show explanation box
+          expBox.style.display = 'block';
+        });
+
+        scoreDisplay.textContent = `${score} / ${questionsData.length}`;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      btnReset.addEventListener('click', () => {
+        document.getElementById('quizForm').reset();
+        scoreDisplay.textContent = `0 / ${questionsData.length}`;
+
+        questionsData.forEach(q => {
+          q.options.forEach(opt => {
+            const label = document.getElementById(`opt-label-${q.id}-${opt.key}`);
+            label.classList.remove('is-correct', 'is-incorrect');
+          });
+          const expBox = document.getElementById(`exp-${q.id}`);
+          expBox.style.display = 'none';
+        });
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
   </script>
 </body>
 </html>
