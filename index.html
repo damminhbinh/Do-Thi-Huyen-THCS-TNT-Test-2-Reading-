@@ -680,6 +680,8 @@
 
   <!-- JavaScript Logic -->
   <script>
+    // Tự động dọn dẹp mọi ký hiệu trích dẫn sót lại
+    document.body.innerHTML = document.body.innerHTML.replace(/\/g, '');
     // 1. Vocabulary Dataset
     const vocabList = [
       { word: "relocate", type: "verb", ipa: "/ˌriːləʊˈkeɪt/", meaning: "chuyển chỗ ở, di dời", synonym: "move, migrate" },
